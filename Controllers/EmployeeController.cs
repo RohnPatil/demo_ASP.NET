@@ -33,7 +33,14 @@ namespace demo.Controllers
 
             return View(employees);
         }
-        
-        
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+
+            return View();
+        }
+
+
     }
 }
