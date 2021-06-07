@@ -41,6 +41,24 @@ namespace demo.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Create(FormCollection formCollection)
+        {
+            Employee emplyoee = new Employee();
+            emplyoee.Name = formCollection["Name"];
+            emplyoee.Gender = formCollection["Gender"];
+            emplyoee.City = formCollection["City"]; 
+            emplyoee.Department = formCollection["Department"];
+
+            EmployeeBusinessLayer employeeBusinessLayer = new EmployeeBusinessLayer();
+            employeeBusinessLayer.AddEmployee(emplyoee);
+
+            return RedirectToAction("Index");
+
+
+            return View();
+        }
+
 
     }
 }
