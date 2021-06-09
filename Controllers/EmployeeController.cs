@@ -34,12 +34,12 @@ namespace demo.Controllers
             return View(employees);
         }
 
-        [HttpGet]
-        public ActionResult Create()
-        {
+        //[HttpGet]
+        //public ActionResult Create()
+        //{
 
-            return View();
-        }
+        //    return View();
+        //}
 
         //Form Collection method
         //[HttpPost]
@@ -58,23 +58,50 @@ namespace demo.Controllers
         //}
 
 
-        
+
         //mapping data request to controller
-        [HttpPost]
-        public ActionResult Create(string name, string gender, string city, string department)
+        //[HttpPost]
+        //public ActionResult Create(string name, string gender, string city, string department)
+        //{
+        //    Employee employee = new Employee();
+        //    employee.Name = name;
+        //    employee.Gender = gender;
+        //    employee.City = city;
+        //    employee.Department = department;
+
+        //    EmployeeBusinessLayer employeeBusinessLayer =
+        //        new EmployeeBusinessLayer();
+
+        //    employeeBusinessLayer.AddEmployee(employee);
+        //    return RedirectToAction("Index");
+        //}
+
+        //update model check cookies, cache and browser data to populate data
+        [HttpGet]
+        [ActionName("Create")]
+        public ActionResult Create_Get()
         {
-            Employee employee = new Employee();
-            employee.Name = name;
-            employee.Gender = gender;
-            employee.City = city;
-            employee.Department = department;
-
-            EmployeeBusinessLayer employeeBusinessLayer =
-                new EmployeeBusinessLayer();
-
-            employeeBusinessLayer.AddEmployee(employee);
-            return RedirectToAction("Index");
+            return View();
         }
+
+        [HttpPost]
+        [ActionName("Create")]
+        public ActionResult Create_Post()
+        {
+            if (ModelState.IsValid)
+            {
+                EmployeeBusinessLayer employeeBusinessLayer =
+                    new EmployeeBusinessLayer();
+
+                Employee employee = new Employee();
+                UpdateModel(employee);
+
+                employeeBusinessLayer.AddEmployee(employee);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
 
 
     }
