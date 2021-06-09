@@ -41,22 +41,39 @@ namespace demo.Controllers
             return View();
         }
 
+        //Form Collection method
+        //[HttpPost]
+        //public ActionResult Create(FormCollection formCollection)
+        //{
+        //    Employee emplyoee = new Employee();
+        //    emplyoee.Name = formCollection["Name"];
+        //    emplyoee.Gender = formCollection["Gender"];
+        //    emplyoee.City = formCollection["City"]; 
+        //    emplyoee.Department = formCollection["Department"];
+
+        //    EmployeeBusinessLayer employeeBusinessLayer = new EmployeeBusinessLayer();
+        //    employeeBusinessLayer.AddEmployee(emplyoee);
+
+        //    return RedirectToAction("Index");
+        //}
+
+
+        
+        //mapping data request to controller
         [HttpPost]
-        public ActionResult Create(FormCollection formCollection)
+        public ActionResult Create(string name, string gender, string city, string department)
         {
-            Employee emplyoee = new Employee();
-            emplyoee.Name = formCollection["Name"];
-            emplyoee.Gender = formCollection["Gender"];
-            emplyoee.City = formCollection["City"]; 
-            emplyoee.Department = formCollection["Department"];
+            Employee employee = new Employee();
+            employee.Name = name;
+            employee.Gender = gender;
+            employee.City = city;
+            employee.Department = department;
 
-            EmployeeBusinessLayer employeeBusinessLayer = new EmployeeBusinessLayer();
-            employeeBusinessLayer.AddEmployee(emplyoee);
+            EmployeeBusinessLayer employeeBusinessLayer =
+                new EmployeeBusinessLayer();
 
+            employeeBusinessLayer.AddEmployee(employee);
             return RedirectToAction("Index");
-
-
-            return View();
         }
 
 
