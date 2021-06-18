@@ -41,8 +41,8 @@ namespace demo.Controllers
         //    return View();
         //}
 
-       
-        
+
+
 
         //update model check cookies, cache and browser data to populate data
         [HttpGet]
@@ -73,8 +73,8 @@ namespace demo.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-                EmployeeBusinessLayer employeeBusinessLayer =
-                    new EmployeeBusinessLayer();
+            EmployeeBusinessLayer employeeBusinessLayer =
+                new EmployeeBusinessLayer();
 
             Employee employee = employeeBusinessLayer.Employees.Single(emp => emp.ID.Equals(id));
 
@@ -84,8 +84,8 @@ namespace demo.Controllers
         [HttpPost]
         public ActionResult Edit(Employee employee)
         {
-            
-            if(ModelState.IsValid)
+
+            if (ModelState.IsValid)
             {
                 EmployeeBusinessLayer employeeBusinessLayer =
                 new EmployeeBusinessLayer();
