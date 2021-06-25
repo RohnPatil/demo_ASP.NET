@@ -203,11 +203,12 @@
     <Content Include="Views\Department\View.cshtml" />
     <Content Include="Views\Department\Index.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
-    <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
+    <Content Include="Views\Employee\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -246,7 +247,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50469</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50469/</IISUrl>
+          <IISUrl>http://localhost:12345/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

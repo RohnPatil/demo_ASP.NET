@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -52,23 +53,24 @@ namespace demo.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ActionName("Create")]
-        public ActionResult Create_Post()
-        {
-            if (ModelState.IsValid)
-            {
-                EmployeeBusinessLayer employeeBusinessLayer =
-                    new EmployeeBusinessLayer();
+        //normal create method
+        //[HttpPost]
+        //[ActionName("Create")]
+        //public ActionResult Create_Post()
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        EmployeeBusinessLayer employeeBusinessLayer =
+        //            new EmployeeBusinessLayer();
 
-                Employee employee = new Employee();
-                UpdateModel(employee);
+        //        Employee employee = new Employee();
+        //        UpdateModel(employee);
 
-                employeeBusinessLayer.AddEmployee(employee);
-                return RedirectToAction("Index");
-            }
-            return View();
-        }
+        //        employeeBusinessLayer.AddEmployee(employee);
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View();
+        //}
 
         [HttpGet]
         public ActionResult Edit(int id)
@@ -99,6 +101,54 @@ namespace demo.Controllers
         }
 
 
+        //[HttpPost]
+        [ActionName("Create")]
+        public ActionResult Create_Post()
+        {
+            if (ModelState.IsValid)
+            {
+                EmployeeBusinessLayer employeeBusinessLayer =
+                    new EmployeeBusinessLayer();
 
+                Employee employee = new Employee();
+                UpdateModel(employee);
+
+                string fileName = Path.GetFileNameWithoutExtension(employee.ImageFile.FileName);
+                string extension = Path.GetExtension(employee.ImageFile.FileName);
+                fileName = fileName + extension;
+                employee.ImagePath = "~/Images/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                employee.ImageFile.SaveAs(fileName);
+
+                employeeBusinessLayer.AddEmployee(employee);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+
+        ////file upload create method
+        //[HttpPost]
+        //[ActionName("Create")]
+        //public ActionResult Create_Post()
+        //{
+        //    EmployeeBusinessLayer employeeBusinessLayer =
+        //                new EmployeeBusinessLayer();
+
+        //    Employee employee = new Employee();
+        //    UpdateModel(employee);
+        //    string fileName = Path.GetFileNameWithoutExtension(employee.ImageFile.FileName);
+        //    string extension = Path.GetExtension(employee.ImageFile.FileName);
+        //    fileName = fileName + extension;
+        //    employee.ImagePath = "~/Images/" + fileName;
+        //    fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
+        //    employee.ImageFile.SaveAs(fileName);
+           
+
+        //    employeeBusinessLayer.AddEmployee(employee);
+
+
+        //    return View();
+        //}
     }
 }
